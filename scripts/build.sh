@@ -11,18 +11,19 @@ python3 "$source_dir/platforms/apple/build_xcframework.py" \
   --out "$repo_dir/.build" \
   --framework_name opencv2 \
   --iphoneos_archs arm64 \
-  --iphonesimulator_archs arm64 \
+  --iphonesimulator_archs arm64,x86_64 \
   --build_only_specified_archs \
   --iphoneos_deployment_target 15.0 \
   --disable-bitcode \
   --without objc
 python3 "$repo_dir/scripts/verify.py" "$repo_dir/.build/opencv2.xcframework"
-# 验证通过后才替换对外分发产物。
-python3 - "$repo_dir" <<'COPY'
-import pathlib, shutil, sys
+# 压缩后分发，避免通用模拟器静态库超过 GitHub 单文件限制。
+python3 - "$repo_dir" <<'PACK'
+import pathlib, subprocess, sys
 root = pathlib.Path(sys.argv[1])
-destination = root / 'opencv2.xcframework'
-if destination.exists():
-    shutil.rmtree(destination)
-shutil.copytree(root / '.build/opencv2.xcframework', destination, symlinks=True)
-COPY
+archive = root / 'opencv2.xcframework.zip'
+if archive.exists():
+    archive.unlink()
+subprocess.run(['ditto', '-c', '-k', '--sequesterRsrc', '--keepParent', str(root / '.build/opencv2.xcframework'), str(archive)], check=True)
+assert archive.stat().st_size < 100 * 1024 * 1024, '分发压缩包超过 GitHub 单文件限制'
+PACK

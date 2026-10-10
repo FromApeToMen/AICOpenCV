@@ -8,8 +8,10 @@
     "arm64"
   ],
   "simulator_archs": [
-    "arm64"
+    "arm64",
+    "x86_64"
   ],
   "objc_bindings": false,
-  "runtime_validation": "需要在消费方应用中验证 iOS 15 真机与模拟器运行"
+  "runtime_validation": "需要在消费方应用中验证 iOS 15 真机与模拟器运行",
+  "package_sha256": "4b3b2fa5e589823eb114f64862d5c763a7685d30dd5629e80840ef8573bb9eb3"
 }
