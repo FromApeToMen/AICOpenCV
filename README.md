@@ -10,7 +10,7 @@
 ## 安装
 
 ```ruby
-pod 'AICOpenCV', :git => 'https://github.com/FromApeToMen/AICOpenCV.git', :tag => '4.10.0.1'
+pod 'AICOpenCV', :git => 'https://github.com/FromApeToMen/AICOpenCV.git', :tag => '4.10.0.2'
 ```
 
 建议团队在 Podfile 中用实际发布 commit 的完整 SHA 固定版本，同时纳入 Podfile.lock。安装者无需在本机编译 OpenCV。旧 OpenCV Pod 必须移除，避免重复链接同名框架。
