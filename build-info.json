@@ -1,0 +1,15 @@
+{
+  "opencv_version": "4.10.0",
+  "source_archive_sha256": "b2171af5be6b26f7a06b1229948bbb2bdaa74fcf5cd097e0af6378fce50a6eb9",
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "cmake": "3.31.6",
+  "deployment_target": "15.0",
+  "device_archs": [
+    "arm64"
+  ],
+  "simulator_archs": [
+    "arm64"
+  ],
+  "objc_bindings": false,
+  "runtime_validation": "需要在消费方应用中验证 iOS 15 真机与模拟器运行"
+}
